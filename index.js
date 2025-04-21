@@ -11,6 +11,9 @@ app.use(bodyParser.json());
 // routing
 app.use('/api', router);
 
+/*
 app.listen(PORT, ()=>{
     console.log(`Server is started on ${PORT}`);
 })
+*/
+export default app;
