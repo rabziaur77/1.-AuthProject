@@ -7,7 +7,7 @@ import router from './Routing.js';
 import socketHandler from './SocketInfo/Socket.js'
 
 const app = express()
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 
 app.use(cors());
 
@@ -27,9 +27,9 @@ app.use(bodyParser.json());
 // routing
 app.use('/api', router);
 
-/*
+
 server.listen(PORT, ()=>{
     console.log(`Server is started on ${PORT}`);
 })
-*/
+
 export default app;
