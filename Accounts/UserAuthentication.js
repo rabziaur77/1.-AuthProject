@@ -26,3 +26,8 @@ export const Login = async (req,res)=>{
     else
         res.status(400).send({"Status":"Failed","Result":"Invalid username & password."})
 }
+
+export const ValidateUser = async (req,res)=>{
+    res.setHeader('Cache-Control', 'no-store');
+    res.status(200).send(req.user)
+}
