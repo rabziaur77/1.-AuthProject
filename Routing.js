@@ -1,6 +1,6 @@
 import express from 'express'
 import jwt from 'jsonwebtoken'
-import {Login, ValidateUser} from './Accounts/UserAuthentication.js'
+import {Login, RegisterUser, ValidateUser} from './Accounts/UserAuthentication.js'
 import SendSMSRequest from './Controller/SendSMS.js';
 import { secret } from './TokenAuth/Tokenization.js';
 
@@ -24,6 +24,7 @@ function authenticateToken(req, res, next) {
 
 //*******Account Controller***********/
 router.post("/account", Login)
+router.post("/register", RegisterUser)
 router.get("/validate",authenticateToken, ValidateUser)
 
 
