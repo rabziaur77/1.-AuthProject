@@ -1,8 +1,26 @@
 // /src/socket.js
 
+import { secret } from "../TokenAuth/Tokenization.js";
+
 const users = {};
 
 function socketHandler(io) {
+
+  io.use((socket, next)=>{
+    const token = socket.handshake.auth.token;
+    if (token) {
+      try {
+        const decoded = jwt.verify(token, secret); // Replace with your secret
+        socket.user = decoded; // Store user info in socket
+        next();
+      } catch (err) {
+        next(new Error('Authentication error'));
+      }
+    } else {
+      next(new Error('Authentication required'));
+    }
+  })
+
   io.on('connection', (socket) => {
     console.log('User connected: ' + socket.id);
     users[socket.id] = socket.id;
