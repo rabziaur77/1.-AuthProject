@@ -1,5 +1,5 @@
 // /src/socket.js
-
+import jwt from 'jsonwebtoken'
 import { secret } from "../TokenAuth/Tokenization.js";
 
 const users = {};
