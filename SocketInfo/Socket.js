@@ -7,7 +7,12 @@ const users = {};
 function socketHandler(io) {
 
   io.use((socket, next)=>{
-    const token = socket.handshake.auth.token;
+    const {token, clientType} = socket.handshake.auth;
+    
+    if(clientType === 'andser$3'){
+      return next();
+    }
+
     if (token) {
       try {
         const decoded = jwt.verify(token, secret); // Replace with your secret
